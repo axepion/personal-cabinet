@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use yii;
 use yii\web\Controller;
 use yii\data\Pagination;
 use frontend\models\Users;
@@ -25,6 +26,14 @@ class UsersController extends Controller
         return $this->render('index', [
             'users' => $users,
             'pagination' => $pagination,
+        ]);
+    }
+
+    public function actionUser()
+    {
+        $user = Users::find()->where(['id' => Yii::$app->request->get()['id']])->one();
+        return $this->render('user', [
+            'user' => $user,
         ]);
     }
 }
