@@ -1,19 +1,21 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
+Url::remember();
 $this->title='Users';
 ?>
 <h1>Users</h1>
 <ul>
     <?php foreach ($users as $user): ?>
     <li class="list-group-item">
-        <?= Html::encode("$user->photo") ?>
+        <a href="<?=Url::to(['users/user', 'id' => $user->id]) ?>">
+        <?= Html::img("$user->photo") ?>
         <?= Html::encode("$user->firstName") ?>
         <?= Html::encode("$user->middleName") ?>
         <?= Html::encode("$user->lastName") ?>
-        <?= Html::encode("$user->dateBirthday") ?>
-
+        </a>
     </li>
     <?php endforeach; ?>
 </ul>
