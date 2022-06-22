@@ -12,6 +12,31 @@ AppAsset::register($this);
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>" >
 <head>
+    <?php
+    NavBar::begin([
+        'brandLabel' => Yii::$app->name,
+        'brandUrl' => Yii::$app->homeUrl,
+        'options' => [
+            'class' => 'navbar navbar-expand-md navbar-dark bg-dark fixed-top',
+        ],
+    ]);
+
+    if (Yii::$app->user->isGuest) {
+        $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
+    }
+
+    if (Yii::$app->user->isGuest) {
+        echo Html::tag('div',Html::a('Login',['/site/login'],['class' => ['btn btn-link login text-decoration-none']]),['class' => ['d-flex']]);
+    } else {
+        echo Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
+            . Html::submitButton(
+                'Logout (' . Yii::$app->user->identity->login . ')',
+                ['class' => 'btn btn-link logout text-decoration-none']
+            )
+            . Html::endForm();
+    }
+    NavBar::end();
+    ?>
     <meta charset="<?= Yii::$app->charset ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <?php $this->registerCsrfMetaTags() ?>

@@ -40,13 +40,30 @@ class SiteController extends Controller
 
     public function actionLogin()
     {
+        if (!Yii::$app->user->isGuest)
+        {
+            return $this->goHome();
+        }
         $model = new LoginForm();
+        if ($model->load(Yii::$app->request->post()) && $model->login())
+        {
+            return $this->goBack();
+        }
         return $this->render('login', [
             'model' => $model,
         ]);
     }
 
-    public function actionAddAdmin() {
+    public function actionLogout()
+    {
+        Yii::$app->user->logout();
+
+        return $this->goHome();
+    }
+
+    /*Secret function :)*/
+    public function actionAddAdmin()
+    {
         $model = Users::find()->where(['login' => 'admin'])->one();
         if (empty($model)) {
             $user = new Users();
