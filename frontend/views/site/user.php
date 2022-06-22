@@ -1,8 +1,9 @@
 <?php
+
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title='User';
+$this->title='Profile';
 ?>
 <h1>User: <?= Html::encode("$user->login") ?></h1>
 <p> <?= Html::img("$user->photo") ?> </p>
@@ -13,4 +14,3 @@ $this->title='User';
 <p>Дата рождения: <?= Html::encode("$user->dateBirthday") ?> </p>
 <p>О себе: <?= Html::encode("$user->about") ?> </p>
 <a href="<?= Url::previous() ?>"> К списку юзеров</a>
-
