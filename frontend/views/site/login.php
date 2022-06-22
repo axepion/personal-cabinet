@@ -15,3 +15,6 @@ $form = ActiveForm::begin([
         </div>
     </div>
 <?php ActiveForm::end() ?>
+<?php
+var_dump($isGuest = Yii::$app->user->isGuest);
+?>

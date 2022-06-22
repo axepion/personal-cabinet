@@ -7,7 +7,6 @@ use yii\data\Pagination;
 use yii\web\Controller;
 use common\models\Users;
 use common\models\LoginForm;
-use yii\widgets\ActiveForm;
 
 class SiteController extends Controller
 {
