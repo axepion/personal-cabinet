@@ -32,7 +32,7 @@ class m220622_033852_users extends Migration
         $this->createTable('users', [
             'id' => $this->primaryKey(),
             'isAdmin' => $this->boolean(),
-            'login' => $this->string(300),
+            'login' => $this->string(300)->notNull()->unique(),
             'password' => $this->string(300),
             'firstName' => $this->string(300),
             'middleName' => $this->string(300),
@@ -40,13 +40,12 @@ class m220622_033852_users extends Migration
             'dateBirthday' => $this->date(),
             'about' => $this->string(1000),
             'photo' => $this->string(),
+            'auth_key' => $this->string(32)->notNull(),
         ]);
     }
 
     public function down()
     {
-        echo "m220622_033852_users cannot be reverted.\n";
-
-        return false;
+       $this->dropTable('users');
     }
 }

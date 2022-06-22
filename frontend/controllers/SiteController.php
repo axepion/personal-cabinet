@@ -45,4 +45,18 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionAddAdmin() {
+        $model = Users::find()->where(['login' => 'admin'])->one();
+        if (empty($model)) {
+            $user = new Users();
+            $user->login = 'admin';
+            $user->setPassword('admin');
+            $user->generateAuthKey();
+            $user->save();
+            if ($user->save()) {
+                echo 'good';
+            }
+        }
+    }
 }

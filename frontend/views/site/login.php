@@ -8,6 +8,7 @@ $form = ActiveForm::begin([
 ]) ?>
     <?= $form->field($model, 'login') ?>
     <?= $form->field($model, 'password')->passwordInput() ?>
+    <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
     <div class="form-group">
         <div class="col-lg-offset-1 col-lg-11">

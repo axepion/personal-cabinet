@@ -12,6 +12,8 @@ $this->title='Users';
     <?php foreach ($users as $user): ?>
         <li class="list-group-item">
             <a href="<?=Url::to(['site/user', 'id' => $user->id]) ?>">
+                <?= Html::encode("$user->id") ?>
+                <?= Html::encode("$user->login") ?>
                 <?= Html::img("$user->photo") ?>
                 <?= Html::encode("$user->firstName") ?>
                 <?= Html::encode("$user->middleName") ?>
