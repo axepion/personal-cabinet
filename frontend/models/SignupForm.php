@@ -13,6 +13,7 @@ class SignupForm extends Model
 {
     public $login;
     public $password;
+    public $password_repeat;
 
     public function rules()
     {
@@ -24,6 +25,9 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
+
+            ['password_repeat', 'required'],
+            ['password_repeat', 'compare', 'compareAttribute' => 'password'],
         ];
     }
 
@@ -32,6 +36,7 @@ class SignupForm extends Model
         return [
             'login' => 'Логин',
             'password' => 'Пароль',
+            'password_repeat' => 'Повторите пароль',
         ];
     }
 

@@ -19,6 +19,8 @@ $this->title = 'Signup';
 
             <?= $form->field($model, 'password')->passwordInput() ?>
 
+            <?= $form->field($model, 'password_repeat')->passwordInput() ?>
+
             <div class="form-group">
                 <?= Html::submitButton('Отправить', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
             </div>
