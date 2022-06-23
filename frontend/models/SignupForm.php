@@ -1,0 +1,51 @@
+<?php
+
+namespace frontend\models;
+
+use Yii;
+use yii\base\Model;
+use common\models\Users;
+
+/**
+ * Signup form
+ */
+class SignupForm extends Model
+{
+    public $login;
+    public $password;
+
+    public function rules()
+    {
+        return [
+            ['login', 'trim'],
+            ['login', 'required'],
+            ['login', 'unique', 'targetClass' => '\common\models\Users', 'message' => 'This username has already been taken.'],
+            ['login', 'string', 'min' => 2, 'max' => 255],
+
+            ['password', 'required'],
+            ['password', 'string', 'min' => Yii::$app->params['user.passwordMinLength']],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'login' => 'Логин',
+            'password' => 'Пароль',
+        ];
+    }
+
+    public function signup()
+    {
+        if (!$this->validate()) {
+            return null;
+        }
+
+        $user = new Users();
+        $user->login = $this->login;
+        $user->setPassword($this->password);
+        $user->generateAuthKey();
+
+        return $user->save();
+    }
+}

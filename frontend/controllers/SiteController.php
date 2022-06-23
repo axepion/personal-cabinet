@@ -7,6 +7,7 @@ use yii\data\Pagination;
 use yii\web\Controller;
 use common\models\Users;
 use common\models\LoginForm;
+use frontend\models\SignupForm;
 
 class SiteController extends Controller
 {
@@ -75,5 +76,18 @@ class SiteController extends Controller
                 echo 'good';
             }
         }
+    }
+
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            Yii::$app->session->setFlash('success', 'Вы успешно зарегистрированы. Войдите под своими данными');
+            return $this->goHome();
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
     }
 }
