@@ -2,20 +2,21 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-$form = ActiveForm::begin([
-    'id' => 'login-form',
-    'options' => ['class' => 'form-horizontal'],
-]) ?>
+$this->title = 'Войти';
+?>
+
+<?php
+    $form = ActiveForm::begin([
+        'id' => 'login-form',
+        'options' => ['class' => 'form-horizontal'],
+    ])
+?>
     <?= $form->field($model, 'login') ?>
     <?= $form->field($model, 'password')->passwordInput() ?>
     <?= $form->field($model, 'rememberMe')->checkbox() ?>
 
     <div class="form-group">
-        <div class="col-lg-offset-1 col-lg-11">
-            <?= Html::submitButton('Вход', ['class' => 'btn btn-primary']) ?>
-        </div>
+        <?= Html::submitButton('Вход', ['class' => 'btn btn-primary']) ?>
     </div>
-<?php ActiveForm::end() ?>
-<?php
 
-?>
+<?php ActiveForm::end() ?>

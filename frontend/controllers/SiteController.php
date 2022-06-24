@@ -34,6 +34,7 @@ class SiteController extends Controller
     public function actionUser()
     {
         $user = Users::find()->where(['id' => Yii::$app->request->get()['id']])->one();
+
         return $this->render('user', [
             'user' => $user,
         ]);
@@ -45,11 +46,14 @@ class SiteController extends Controller
         {
             return $this->goHome();
         }
+
         $model = new LoginForm();
+
         if ($model->load(Yii::$app->request->post()) && $model->login())
         {
             return $this->goBack();
         }
+
         return $this->render('login', [
             'model' => $model,
         ]);
@@ -72,6 +76,7 @@ class SiteController extends Controller
             $user->setPassword('admin');
             $user->generateAuthKey();
             $user->save();
+
             if ($user->save()) {
                 echo 'good';
             }
@@ -89,5 +94,19 @@ class SiteController extends Controller
         return $this->render('signup', [
             'model' => $model,
         ]);
+    }
+
+    public function actionProfile()
+    {
+        if (!Yii::$app->user->isGuest)
+        {
+            $user = Users::find()->where(['id' => Yii::$app->user->id])->one();
+            return $this->render('user', [
+               'user' => $user,
+            ]);
+        } else {
+            return $this->goHome();
+        }
+
     }
 }

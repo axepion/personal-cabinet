@@ -5,9 +5,10 @@ use yii\helpers\Url;
 use yii\widgets\LinkPager;
 
 Url::remember();
-$this->title='Users';
+
+$this->title='Список пользователей';
 ?>
-<h1>Users</h1>
+<h1 class="toast-header"> <?= $this->title ?> </h1>
 <ul>
     <?php foreach ($users as $user): ?>
         <li class="list-group-item">

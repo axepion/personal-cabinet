@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title='Profile';
+$this->title='Профиль';
 ?>
 <h1>User: <?= Html::encode("$user->login") ?></h1>
 <p> <?= Html::img("$user->photo") ?> </p>

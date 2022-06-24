@@ -3,13 +3,13 @@
 use yii\bootstrap4\Html;
 use yii\bootstrap4\ActiveForm;
 
-$this->title = 'Signup';
+$this->title = 'Регистрация';
 
 ?>
 <div class="site-signup">
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Заполните поля для регистрации:</p>
+    <p>Заполните поля:</p>
 
     <div class="row">
         <div class="col-lg-5">
