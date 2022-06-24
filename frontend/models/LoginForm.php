@@ -1,8 +1,9 @@
 <?php
-namespace common\models;
+namespace frontend\models;
 
 use Yii;
 use yii\base\Model;
+use common\models\Users;
 
 class LoginForm extends Model
 {

@@ -6,8 +6,9 @@ use Yii;
 use yii\data\Pagination;
 use yii\web\Controller;
 use common\models\Users;
-use common\models\LoginForm;
+use frontend\models\LoginForm;
 use frontend\models\SignupForm;
+use frontend\models\ProfileEdit;
 
 class SiteController extends Controller
 {
@@ -28,15 +29,6 @@ class SiteController extends Controller
         return $this->render('index', [
             'users' => $users,
             'pagination' => $pagination,
-        ]);
-    }
-
-    public function actionUser()
-    {
-        $user = Users::find()->where(['id' => Yii::$app->request->get()['id']])->one();
-
-        return $this->render('user', [
-            'user' => $user,
         ]);
     }
 
@@ -66,6 +58,49 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
+    public function actionSignup()
+    {
+        $model = new SignupForm();
+        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
+            Yii::$app->session->setFlash('success', 'Вы успешно зарегистрированы. Войдите под своими данными');
+            return $this->goHome();
+        }
+
+        return $this->render('signup', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionUser()
+    {
+        $user = Users::find()->where(['id' => Yii::$app->request->get()['id']])->one();
+
+        return $this->render('user', [
+            'user' => $user,
+        ]);
+    }
+
+    public function actionProfile()
+    {
+        if (!Yii::$app->user->isGuest)
+        {
+            $user = Users::find()->where(['id' => Yii::$app->user->id])->one();
+            return $this->render('user', [
+                'user' => $user,
+            ]);
+        } else {
+            return $this->goHome();
+        }
+    }
+
+    public function actionEdit()
+    {
+        $model = new ProfileEdit();
+        return $this->render('edit', [
+            'model' => $model,
+        ]);
+    }
+
     /*Secret function :)*/
     public function actionAddAdmin()
     {
@@ -81,32 +116,5 @@ class SiteController extends Controller
                 echo 'good';
             }
         }
-    }
-
-    public function actionSignup()
-    {
-        $model = new SignupForm();
-        if ($model->load(Yii::$app->request->post()) && $model->signup()) {
-            Yii::$app->session->setFlash('success', 'Вы успешно зарегистрированы. Войдите под своими данными');
-            return $this->goHome();
-        }
-
-        return $this->render('signup', [
-            'model' => $model,
-        ]);
-    }
-
-    public function actionProfile()
-    {
-        if (!Yii::$app->user->isGuest)
-        {
-            $user = Users::find()->where(['id' => Yii::$app->user->id])->one();
-            return $this->render('user', [
-               'user' => $user,
-            ]);
-        } else {
-            return $this->goHome();
-        }
-
     }
 }
