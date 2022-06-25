@@ -14,6 +14,24 @@ use yii\web\IdentityInterface;
  */
 class Users extends ActiveRecord implements IdentityInterface
 {
+    public function rules()
+    {
+        return [
+            [['firstName', 'middleName', 'lastName', ], 'string', 'max' => 255],
+
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'firstName' => 'Имя',
+            'middleName' => 'Отчество',
+            'lastName' => 'Фамилия',
+            'dateBirthday' => 'День рождения',
+            'about' => 'О себе',
+        ];
+    }
 
     public static function tableName()
     {
@@ -64,6 +82,4 @@ class Users extends ActiveRecord implements IdentityInterface
     {
         throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
     }
-
-
 }

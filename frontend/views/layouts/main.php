@@ -34,13 +34,13 @@ Yii::$app->name = "Личный кабинет"
         echo Html::tag('div',Html::a('Войти',['/site/login'],['class' => ['btn btn-link login text-decoration-none']]),['class' => ['d-flex']]);
         echo Html::tag('div',Html::a('Регистрация',['/site/signup'],['class' => ['btn btn-link login text-decoration-none']]),['class' => ['d-flex']]);
     } else {
+        echo Html::tag('div',Html::a('Мой профиль',['/profile'],['class' => ['btn btn-link login text-decoration-none']]),['class' => ['d-flex']]);
         echo Html::beginForm(['/site/logout'], 'post', ['class' => 'd-flex'])
             . Html::submitButton(
                 'Выйти (' . Yii::$app->user->identity->login . ')',
                 ['class' => 'btn btn-link logout text-decoration-none']
             )
             . Html::endForm();
-        echo Html::tag('div',Html::a('Мой профиль',['/site/profile'],['class' => ['btn btn-link login text-decoration-none']]),['class' => ['d-flex']]);
     }
     NavBar::end();
     ?>
@@ -57,6 +57,7 @@ Yii::$app->name = "Личный кабинет"
 
 
     <div class="container">
+        <?= Alert::widget() ?>
         <?= $content ?>
     </div>
 

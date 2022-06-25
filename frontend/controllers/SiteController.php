@@ -8,7 +8,6 @@ use yii\web\Controller;
 use common\models\Users;
 use frontend\models\LoginForm;
 use frontend\models\SignupForm;
-use frontend\models\ProfileEdit;
 
 class SiteController extends Controller
 {
@@ -77,27 +76,6 @@ class SiteController extends Controller
 
         return $this->render('user', [
             'user' => $user,
-        ]);
-    }
-
-    public function actionProfile()
-    {
-        if (!Yii::$app->user->isGuest)
-        {
-            $user = Users::find()->where(['id' => Yii::$app->user->id])->one();
-            return $this->render('user', [
-                'user' => $user,
-            ]);
-        } else {
-            return $this->goHome();
-        }
-    }
-
-    public function actionEdit()
-    {
-        $model = new ProfileEdit();
-        return $this->render('edit', [
-            'model' => $model,
         ]);
     }
 

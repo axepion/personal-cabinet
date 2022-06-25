@@ -1,16 +1,15 @@
 <?php
 namespace frontend\models;
 
+use common\models\Users;
 use yii\base\Model;
 
-class ProfileEdit extends Model
+class Profile extends Model
 {
-    public $photo;
     public $firstName;
     public $middleName;
     public $lastName;
     public $dateBirthday;
     public $about;
-
 
 }
