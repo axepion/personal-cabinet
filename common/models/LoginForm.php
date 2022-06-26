@@ -1,9 +1,8 @@
 <?php
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
-use common\models\Users;
 
 class LoginForm extends Model
 {
@@ -12,6 +11,7 @@ class LoginForm extends Model
     public $rememberMe = true;
 
     private $_user;
+    private $isAdmin;
 
     public function rules()
     {
