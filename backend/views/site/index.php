@@ -5,6 +5,7 @@ use yii\widgets\ActiveForm;
 
 
 $this->title = 'Админ панель';
+
 ?>
 
 <?php

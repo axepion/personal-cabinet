@@ -12,12 +12,14 @@ $this->title='Список пользователей';
 <ul>
     <?php foreach ($users as $user): ?>
         <li class="list-group-item">
+                <a href="<?=Url::to("user-edit?id=$user->id")?>">
                 <?= Html::encode("$user->id") ?>
                 <?= Html::encode("$user->login") ?>
                 <?= Html::img("$user->photo") ?>
                 <?= Html::encode("$user->firstName") ?>
                 <?= Html::encode("$user->middleName") ?>
                 <?= Html::encode("$user->lastName") ?>
+                </a>
         </li>
     <?php endforeach; ?>
 </ul>

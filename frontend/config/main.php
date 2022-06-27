@@ -42,8 +42,15 @@ return [
             'showScriptName' => false,
             'rules' => [
                 '/' => 'site/index',
-                '/site/profile/edit' => '/site/edit',
+
             ],
+        ],
+
+        'urlManagerBackend' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => '@backend/web',
+            'enablePrettyUrl' => true,
+            'showScriptName' => false,
         ],
 
     ],

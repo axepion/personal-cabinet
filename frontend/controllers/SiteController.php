@@ -2,8 +2,10 @@
 
 namespace frontend\controllers;
 
+use yii\helpers\Url;
 use Yii;
 use yii\data\Pagination;
+use yii\helpers\VarDumper;
 use yii\web\Controller;
 use common\models\Users;
 use common\models\LoginForm;
@@ -95,4 +97,10 @@ class SiteController extends Controller
             }
         }
     }
+
+    public function actionAdmin()
+    {
+        Url::to('Yii::$app->urlManagerBackend->baseUrl');
+    }
+
 }

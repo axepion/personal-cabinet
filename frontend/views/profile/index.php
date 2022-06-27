@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 $this->title='Мой профиль';
+
 ?>
 
 <h1>Ваш логин: <?= Html::encode("$user->login") ?></h1>

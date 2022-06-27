@@ -8,6 +8,7 @@ use Yii;
 use yii\data\Pagination;
 use yii\helpers\VarDumper;
 use yii\web\Controller;
+use yii\web\User;
 
 /**
  * Site controller
@@ -78,5 +79,23 @@ class SiteController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
+    }
+
+    public function actionUserEdit($id)
+    {
+        if (Users::isAdmin() != 1)
+        {
+            Yii::$app->session->setFlash('error', 'Вы не имеете административных прав');
+            return $this->goHome();
+        }
+        $user = Users::findOne($id);
+        if ($user->load(Yii::$app->request->post()) && $user->save())
+        {
+            Yii::$app->session->setFlash('success', "Профиль $user->login был изменен");
+            return Yii::$app->response->redirect('users');
+        }
+        return $this->render('userEdit', [
+           'user' => $user,
+        ]);
     }
 }
