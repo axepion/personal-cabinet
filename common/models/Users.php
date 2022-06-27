@@ -14,6 +14,8 @@ use yii\web\IdentityInterface;
  */
 class Users extends ActiveRecord implements IdentityInterface
 {
+    private static $user;
+
     public function rules()
     {
         return [
@@ -46,6 +48,11 @@ class Users extends ActiveRecord implements IdentityInterface
     public static function findByUsername($login)
     {
         return static::findOne(['login' => $login]);
+    }
+
+    public static function isAdmin()
+    {
+        return Users::findOne(Yii::$app->user->getId())->isAdmin;
     }
 
     public function getId()

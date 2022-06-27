@@ -3,8 +3,8 @@ use yii\helpers\Html;
 use yii\helpers\VarDumper;
 use yii\widgets\ActiveForm;
 
+
 $this->title = 'Админ панель';
-VarDumper::dump($_SESSION, 10, true);
 ?>
 
 <?php

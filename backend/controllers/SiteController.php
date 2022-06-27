@@ -26,10 +26,20 @@ class SiteController extends Controller
 
     public function actionIndex()
     {
+        if (!Yii::$app->user->isGuest)
+        {
+            $this->redirect('site/users');
+        }
         $model = new LoginForm();
 
         if ($model->load(Yii::$app->request->post()) && $model->login())
         {
+            if (Users::isAdmin() != 1)
+            {
+                Yii::$app->user->logout();
+                Yii::$app->session->setFlash('error', 'Ваша учетная запись не имеет административные права');
+                return $this->goHome();
+            }
             return $this->goBack();
         }
 
@@ -40,6 +50,11 @@ class SiteController extends Controller
 
     public function actionUsers()
     {
+        if (Users::isAdmin() != 1)
+        {
+            Yii::$app->session->setFlash('error', 'Вы не имеете административных прав');
+            return $this->goHome();
+        }
         $query = Users::find();
 
         $pagination = new Pagination([

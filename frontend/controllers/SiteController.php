@@ -6,7 +6,7 @@ use Yii;
 use yii\data\Pagination;
 use yii\web\Controller;
 use common\models\Users;
-use frontend\models\LoginForm;
+use common\models\LoginForm;
 use frontend\models\SignupForm;
 
 class SiteController extends Controller
