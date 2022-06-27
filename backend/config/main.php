@@ -38,12 +38,7 @@ return [
             'errorAction' => 'site/error',
         ],
 
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
-        ],
+        'urlManager' => require Yii::getAlias("@backend/config/urlManager.php"),
 
     ],
     'params' => $params,

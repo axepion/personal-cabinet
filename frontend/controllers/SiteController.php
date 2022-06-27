@@ -100,7 +100,7 @@ class SiteController extends Controller
 
     public function actionAdmin()
     {
-        Url::to('Yii::$app->urlManagerBackend->baseUrl');
+        return $this->redirect(Yii::$app->urlManagerBackend->createAbsoluteUrl(['site/index']));
     }
 
 }

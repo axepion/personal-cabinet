@@ -29,7 +29,7 @@ class SiteController extends Controller
     {
         if (!Yii::$app->user->isGuest)
         {
-            $this->redirect('site/users');
+            return $this->redirect('site/users');
         }
         $model = new LoginForm();
 
