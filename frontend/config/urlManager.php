@@ -9,4 +9,8 @@ return [
     'enablePrettyUrl' => true,
     'enableStrictParsing' => false,
     'showScriptName' => false,
+    'rules' => [
+        '' => 'site/index',
+        '/admin' => 'site/admin',
+    ]
 ];
