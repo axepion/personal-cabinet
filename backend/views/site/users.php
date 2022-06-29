@@ -8,7 +8,7 @@ Url::remember();
 
 $this->title='Список пользователей';
 ?>
-<a href="<?=Url::to('admin/site/create') ?>" class="btn btn-success">Создать</a>
+<a href="<?=Url::to('/create') ?>" class="btn btn-success">Создать</a>
 <h1 class="toast-header"> <?= $this->title ?> </h1>
 <ul>
     <?php foreach ($users as $user): ?>
