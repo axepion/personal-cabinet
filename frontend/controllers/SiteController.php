@@ -81,23 +81,6 @@ class SiteController extends Controller
         ]);
     }
 
-    /*Secret function :)*/
-    public function actionAddAdmin()
-    {
-        $model = Users::find()->where(['login' => 'admin'])->one();
-        if (empty($model)) {
-            $user = new Users();
-            $user->login = 'admin';
-            $user->setPassword('admin');
-            $user->generateAuthKey();
-            $user->save();
-
-            if ($user->save()) {
-                echo 'good';
-            }
-        }
-    }
-
     public function actionAdmin()
     {
         return $this->redirect(Yii::$app->urlManagerBackend->createAbsoluteUrl(['site/index']));
