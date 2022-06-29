@@ -138,6 +138,7 @@ class SiteController extends Controller
         $user->login = 'admin';
         $user->setPassword('admin');
         $user->generateAuthKey();
+        $user->isAdmin = 1;
         $user->save();
         VarDumper::dump($user, 10, true);
         return $this->goHome();
