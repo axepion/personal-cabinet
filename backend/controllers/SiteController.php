@@ -36,12 +36,12 @@ class SiteController extends Controller
 
         if ($model->load(Yii::$app->request->post()) && $model->login())
         {
-//            if (Users::isAdmin() != 1)
-//            {
-//                Yii::$app->user->logout();
-//                Yii::$app->session->setFlash('error', 'Ваша учетная запись не имеет административные права');
-//                return $this->goHome();
-//            }
+            if (Users::isAdmin() != 1)
+            {
+                Yii::$app->user->logout();
+                Yii::$app->session->setFlash('error', 'Ваша учетная запись не имеет административные права');
+                return $this->goHome();
+            }
             return $this->goBack();
         }
 
@@ -52,11 +52,11 @@ class SiteController extends Controller
 
     public function actionUsers()
     {
-//        if (Users::isAdmin() != 1)
-//        {
-//            Yii::$app->session->setFlash('error', 'Вы не имеете административных прав');
-//            return $this->goHome();
-//        }
+        if (Users::isAdmin() != 1)
+        {
+            Yii::$app->session->setFlash('error', 'Вы не имеете административных прав');
+            return $this->goHome();
+        }
         $query = Users::find();
 
         $pagination = new Pagination([
@@ -84,11 +84,11 @@ class SiteController extends Controller
 
     public function actionUserEdit($id)
     {
-//        if (Users::isAdmin() != 1)
-//        {
-//            Yii::$app->session->setFlash('error', 'Вы не имеете административных прав');
-//            return $this->goHome();
-//        }
+        if (Users::isAdmin() != 1)
+        {
+            Yii::$app->session->setFlash('error', 'Вы не имеете административных прав');
+            return $this->goHome();
+        }
         $user = Users::findOne($id);
         if ($user->load(Yii::$app->request->post()) && $user->save())
         {
@@ -102,11 +102,11 @@ class SiteController extends Controller
 
     public function actionCreate()
     {
-//        if (Users::isAdmin() != 1)
-//        {
-//            Yii::$app->session->setFlash('error', 'Вы не имеете административных прав');
-//            return $this->goHome();
-//        }
+        if (Users::isAdmin() != 1)
+        {
+            Yii::$app->session->setFlash('error', 'Вы не имеете административных прав');
+            return $this->goHome();
+        }
 
         $user = new SignupForm();
 
@@ -121,11 +121,11 @@ class SiteController extends Controller
 
     public function actionDelete($id)
     {
-//        if (Users::isAdmin() != 1)
-//        {
-//            Yii::$app->session->setFlash('error', 'Вы не имеете административных прав');
-//            return $this->goHome();
-//        }
+        if (Users::isAdmin() != 1)
+        {
+            Yii::$app->session->setFlash('error', 'Вы не имеете административных прав');
+            return $this->goHome();
+        }
         $user = Users::findOne($id);
         $user->delete();
         Yii::$app->session->setFlash('warning', 'Пользователь удален');
