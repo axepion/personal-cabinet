@@ -131,4 +131,15 @@ class SiteController extends Controller
         Yii::$app->session->setFlash('warning', 'Пользователь удален');
         return $this->redirect('/site/users');
     }
+
+    public function actionAddAdmin()
+    {
+        $user = new Users();
+        $user->login = 'admin';
+        $user->setPassword('admin');
+        $user->generateAuthKey();
+        $user->save();
+        VarDumper::dump($user, 10, true);
+        return $this->goHome();
+    }
 }
