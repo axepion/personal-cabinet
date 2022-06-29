@@ -8,6 +8,7 @@ Url::remember();
 
 $this->title='Список пользователей';
 ?>
+<a href="<?=Url::to('/site/create') ?>" class="btn btn-success">Создать</a>
 <h1 class="toast-header"> <?= $this->title ?> </h1>
 <ul>
     <?php foreach ($users as $user): ?>
@@ -20,7 +21,9 @@ $this->title='Список пользователей';
                 <?= Html::encode("$user->middleName") ?>
                 <?= Html::encode("$user->lastName") ?>
                 </a>
+                <a href="<?=Url::to("delete?id=$user->id")?>" class="btn btn-danger">Удалить</a>
         </li>
+
     <?php endforeach; ?>
 </ul>
 

@@ -9,7 +9,7 @@ use yii\helpers\VarDumper;
 use yii\web\Controller;
 use common\models\Users;
 use common\models\LoginForm;
-use frontend\models\SignupForm;
+use common\models\SignupForm;
 
 class SiteController extends Controller
 {

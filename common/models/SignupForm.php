@@ -1,10 +1,9 @@
 <?php
 
-namespace frontend\models;
+namespace common\models;
 
 use Yii;
 use yii\base\Model;
-use common\models\Users;
 
 /**
  * Signup form
@@ -14,7 +13,6 @@ class SignupForm extends Model
     public $login;
     public $password;
     public $password_repeat;
-
     public function rules()
     {
         return [

@@ -20,7 +20,10 @@ class Users extends ActiveRecord implements IdentityInterface
     {
         return [
             [['firstName', 'middleName', 'lastName', ], 'string', 'max' => 255],
-
+            [['about', ], 'string', 'max' => 600],
+            [['dateBirthday'], 'default', 'value' => date('Y-m-d')],
+            [['dateBirthday'], 'date', 'format' => 'php:Y-m-d'],
+            [['isAdmin'], 'boolean'],
         ];
     }
 

@@ -15,7 +15,6 @@ $form = ActiveForm::begin([
 <?= $form->field($user, 'middleName') ?>
 <?= $form->field($user, 'dateBirthday') ?>
 <?= $form->field($user, 'about')->textarea() ?>
-<?= $form->field($user, 'isAdmin') ?>
 
 <?= Html::submitButton('Обновить', ['class' => 'btn btn-primary']) ?>
 

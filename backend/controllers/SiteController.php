@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use common\models\LoginForm;
 use common\models\Users;
+use common\models\SignupForm;
 use Yii;
 use yii\data\Pagination;
 use yii\helpers\VarDumper;
@@ -97,5 +98,37 @@ class SiteController extends Controller
         return $this->render('userEdit', [
            'user' => $user,
         ]);
+    }
+
+    public function actionCreate()
+    {
+        if (Users::isAdmin() != 1)
+        {
+            Yii::$app->session->setFlash('error', 'Вы не имеете административных прав');
+            return $this->goHome();
+        }
+
+        $user = new SignupForm();
+
+        if ($user->load(Yii::$app->request->post()) && $user->signup()) {
+            Yii::$app->session->setFlash('success', 'Пользователь создан');
+            return $this->redirect('/site/users');
+        }
+        return $this->render('create', [
+            'user' => $user,
+        ]);
+    }
+
+    public function actionDelete($id)
+    {
+        if (Users::isAdmin() != 1)
+        {
+            Yii::$app->session->setFlash('error', 'Вы не имеете административных прав');
+            return $this->goHome();
+        }
+        $user = Users::findOne($id);
+        $user->delete();
+        Yii::$app->session->setFlash('warning', 'Пользователь удален');
+        return $this->redirect('/site/users');
     }
 }

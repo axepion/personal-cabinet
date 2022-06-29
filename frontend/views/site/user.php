@@ -5,7 +5,7 @@ use yii\helpers\Url;
 
 $this->title='Профиль';
 ?>
-<h1>Пользователь: <?= Html::encode("$user->login") ?></h1>
+<h1>Данные пользователя: </h1>
 <p> <?= Html::img("$user->photo") ?> </p>
 <p>id: <?= Html::encode("$user->id") ?> </p>
 <p>Имя: <?= Html::encode("$user->firstName") ?> </p>
