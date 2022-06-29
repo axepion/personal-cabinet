@@ -10,7 +10,4 @@ return [
     'enablePrettyUrl' => true,
     'enableStrictParsing' => false,
     'showScriptName' => false,
-    'rules' => [
-        '/create' => '/admin/create',
-        ]
 ];
